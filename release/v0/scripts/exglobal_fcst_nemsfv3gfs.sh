@@ -115,16 +115,21 @@ export warm_start=${warm_start:-".false."}
 if [ $warm_start = ".false." ]; then
 #if [ -d $IC_DIR/${CASE}_$CDATE ]; then
 # $NCP $IC_DIR/${CASE}_$CDATE/* $DATA/INPUT/.
+
  if [ -d $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE} ]; then
   $NCP $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE}/* $DATA/INPUT/.
- else
-  for file in $MEMDIR/INPUT/*.nc; do
+ else 
+  if [ -d $IC_DIR/INPUT ]; then
+   $NCP $IC_DIR/INPUT/* $DATA/INPUT/.
+  else
+   for file in $MEMDIR/INPUT/*.nc; do
     file2=$(echo $(basename $file))
     fsuf=`echo $file2 | cut -c1-3`
     if [ $fsuf = "gfs" -o $fsuf = "sfc" ]; then
       $NLN $file $DATA/INPUT/$file2
     fi
-  done
+   done
+  fi
  fi
 else
   for file in $MEMDIR/RESTART/*.nc; do
@@ -165,6 +170,11 @@ for n in `seq 1 $ntiles`; do
   $NLN $MEMDIR/nggps3d.tile${n}.nc       $DATA/.
 done
 
+for n in 0 `seq 1 $FHOUT_HF $FHMAX_HF` `seq 1 $FHOUT $FHMAX` ; do
+  $NLN $MEMDIR/atmf`printf %03d $n`.nemsio $DATA/.
+  $NLN $MEMDIR/sfcf`printf %03d $n`.nemsio $DATA/.
+done
+
 # GFS standard input data
 export iems=${iems:-1}
 export isol=${isol:-2}
@@ -193,23 +203,32 @@ fi
 
 export FNGLAC=${FNGLAC:-"$FIX_AM/global_glacier.2x2.grb"}
 export FNMXIC=${FNMXIC:-"$FIX_AM/global_maxice.2x2.grb"}
-export FNTSFC=${FNTSFC:-"$FIX_AM/RTGSST.1982.2012.monthly.clim.grb"}
 export FNSNOC=${FNSNOC:-"$FIX_AM/global_snoclim.1.875.grb"}
 export FNZORC=${FNZORC:-"igbp"}
-export FNALBC=${FNALBC:-"$FIX_AM/global_snowfree_albedo.bosu.t1534.3072.1536.rg.grb"}
 export FNALBC2=${FNALBC2:-"$FIX_AM/global_albedo4.1x1.grb"}
 export FNAISC=${FNAISC:-"$FIX_AM/CFSR.SEAICE.1982.2012.monthly.clim.grb"}
 export FNTG3C=${FNTG3C:-"$FIX_AM/global_tg3clim.2.6x1.5.grb"}
-export FNVEGC=${FNVEGC:-"$FIX_AM/global_vegfrac.0.144.decpercent.grb"}
-export FNVETC=${FNVETC:-"$FIX_AM/global_vegtype.igbp.t1534.3072.1536.rg.grb"}
-export FNSOTC=${FNSOTC:-"$FIX_AM/global_soiltype.statsgo.t1534.3072.1536.rg.grb"}
-export FNSMCC=${FNSMCC:-"$FIX_AM/global_soilmgldas.t1534.3072.1536.grb"}
+# ---- hera
+ export FNTSFC=${FNTSFC:-"$FIX_AM/RTGSST.1982.2012.monthly.clim.grb"}
+ export FNVEGC=${FNVEGC:-"$FIX_AM/global_vegfrac.0.144.decpercent.grb"}
+ export FNALBC=${FNALBC:-"$FIX_AM/global_snowfree_albedo.bosu.t1534.3072.1536.rg.grb"}
+ export FNVETC=${FNVETC:-"$FIX_AM/global_vegtype.igbp.t1534.3072.1536.rg.grb"}
+ export FNSOTC=${FNSOTC:-"$FIX_AM/global_soiltype.statsgo.t1534.3072.1536.rg.grb"}
+ export FNSMCC=${FNSMCC:-"$FIX_AM/global_soilmgldas.t1534.3072.1536.grb"}
+ export FNABSC=${FNABSC:-"$FIX_AM/global_mxsnoalb.uariz.t1534.3072.1536.rg.grb"}
+# ---- orion
+#export FNTSFC=${FNTSFC:-"$FIX_AM/CFSR.OISST.1999.2012.monthly.clim.grb"}
+#export FNVEGC=${FNVEGC:-"$FIX_AM/global_vegfrac.1x1.grb"}
+#export FNALBC=${FNALBC:-"$FIX_AM/global_snowfree_albedo.bosu.t574.1152.576.rg.grb"}
+#export FNVETC=${FNVETC:-"$FIX_AM/global_vegtype.igbp.t574.1152.576.rg.grb"}
+#export FNSOTC=${FNSOTC:-"$FIX_AM/global_soiltype.statsgo.t574.1152.576.rg.grb"}
+#export FNSMCC=${FNSMCC:-"$FIX_AM/global_soilmgldas.t574.1760.880.grb"}
+#export FNABSC=${FNABSC:-"$FIX_AM/global_mxsnoalb.uariz.t574.1152.576.rg.grb"}
+
 export FNMSKH=${FNMSKH:-"$FIX_AM/seaice_newland.grb"}
 export FNVMNC=${FNVMNC:-"$FIX_AM/global_shdmin.0.144x0.144.grb"}
 export FNVMXC=${FNVMXC:-"$FIX_AM/global_shdmax.0.144x0.144.grb"}
 export FNSLPC=${FNSLPC:-"$FIX_AM/global_slope.1x1.grb"}
-export FNABSC=${FNABSC:-"$FIX_AM/global_mxsnoalb.uariz.t1534.3072.1536.rg.grb"}
-
 # nstf_name contains the NSST related parameters
 # nstf_name(1) : 0 = NSSTM off, 1 = NSSTM on but uncoupled, 2 = NSSTM on and coupled
 # nstf_name(2) : 1 = NSSTM spin up on, 0 = NSSTM spin up off
@@ -298,8 +317,8 @@ else
   export do_vort_damp=".true."
   if [ ${TYPE} = "nh" ]; then
     # non-hydrostatic
-    export hord_mt="6"
-    export hord_xx="6"
+    export hord_mt=${hord_mt:-"6"}
+    export hord_xx=${hord_xx:-"6"}
   else
     # hydrostatic
     export hord_mt="10"
@@ -380,7 +399,6 @@ cat > model_configure <<EOF
   nhours_fcst:             $FHMAX
   RUN_CONTINUE:            ${RUN_CONTINUE:-".false."}
   ENS_SPS:                 ${ENS_SPS:-".false."}
-
   dt_atmos:                $DELTIM    
   calendar:                ${calendar:-'julian'}
   memuse_verbose:          ${memuse_verbose:-".false."}
@@ -389,8 +407,24 @@ cat > model_configure <<EOF
   ncores_per_node:         $cores_per_node
   restart_interval:        ${restart_interval:-0}
   cpl:                     .false. 
-  quilting:                .false.
   output_1st_tstep_rst:    .false.
+
+  quilting:                $quilting
+  write_groups:            $write_groups
+  write_tasks_per_group:   $write_tasks_per_group
+  num_files:               2
+  filename_base:           'atm' 'sfc'
+  output_grid:             gaussian_grid
+  output_file:             nemsio
+  write_nemsioflip:        .true.
+  write_fsyncflag:         .true.
+  imo:                     $LONB
+  jmo:                     $LATB
+
+  nfhout:                  $FHOUT
+  nfhmax_hf:               $FHMAX_HF
+  nfhout_hf:               $FHOUT_HF
+  nsout:                   -1
 EOF
 if [ $VERBOSE = YES ] ; then cat model_configure ; fi
 
@@ -429,7 +463,6 @@ cat > input.nml <<EOF
   chksum_debug = $chksum_debug
   dycore_only = $dycore_only
   fdiag = ${fdiag:-$FHOUT}
-  ccpp_suite = 'FV3_GFS_2017_fv3wam'
 /
 
 &diag_manager_nml
@@ -491,7 +524,7 @@ cat > input.nml <<EOF
   fv_sg_adj = ${fv_sg_adj:-450}
   d2_bg = ${d2_bg:-0.}
   nord = ${nord:-3}
-  dddmp = ${ddmp:-0.2}
+  dddmp = ${dddmp:-0.2}
   d4_bg = ${d4_bg:-0.15}
   vtdm4 = ${VTDM4:-$vtdm4}
   delt_max = ${delt_max:-"0.002"}
@@ -507,7 +540,7 @@ cat > input.nml <<EOF
   hord_mt = $hord_mt
   hord_vt = $hord_xx
   hord_tm = $hord_xx
-  hord_dp = $hord_xx
+  hord_dp = ${hord_dp:-"6"}
   hord_tr = ${hord_tr:-"8"}
   adjust_dry_mass = ${adjust_dry_mass:-".false."}
   do_sat_adj = ${do_sat_adj:-".false."}
