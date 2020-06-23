@@ -164,7 +164,7 @@ elif [[ $MACHINE_ID = gaea.* ]]; then
   QUEUE=debug
 #  DO NOT SET AN ACCOUNT EVERYONE IS NOT A MEMBER OF
 #  USE AN ENVIRONMENT VARIABLE TO SET ACCOUNT
-#  ACCNR=cmp
+  ACCNR=gfdl_w
   PARTITION=c4
   STMP=/lustre/f2/scratch
   PTMP=/lustre/f2/scratch
@@ -193,7 +193,8 @@ elif [[ $MACHINE_ID = hera.* ]]; then
   ECFLOW_START=/scratch2/NCEPDEV/fv3-cam/Dusan.Jovic/ecflow/bin/ecflow_start.sh
   ECF_PORT=$(( $(id -u) + 1500 ))
   QUEUE=debug
-#  ACCNR=fv3-cpu
+# ACCNR=fv3-cpu
+  ACCNR=nems
   PARTITION=
   dprefix=/scratch1/NCEPDEV
   DISKNM=$dprefix/nems/emc.nemspara/RT
@@ -380,7 +381,7 @@ done
 if [[ $MACHINE_ID = hera.* ]] || [[ $MACHINE_ID = orion.* ]] || [[ $MACHINE_ID = cheyenne.* ]]; then
   RTPWD=${RTPWD:-$DISKNM/NEMSfv3gfs/develop-20200424/${COMPILER^^}}
 else
-  RTPWD=${RTPWD:-$DISKNM/NEMSfv3gfs/develop-20200424}
+  RTPWD=${RTPWD:-$DISKNM/NEMSfv3gfs/develop-20191230}
 fi
 
 shift $((OPTIND-1))

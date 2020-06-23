@@ -101,6 +101,13 @@ CFLAGS += -qno-opt-dynamic-align
 endif
 endif
 
+ifeq ($(SW_DYNAMICS),Y)
+CPPDEFS += -DSW_DYNAMICS
+endif
+ifeq ($(TEST_TRACER),Y)
+CPPDEFS += -DTEST_TRACER
+endif
+
 ifeq ($(MULTI_GASES),Y)
 CPPDEFS += -DMULTI_GASES
 endif

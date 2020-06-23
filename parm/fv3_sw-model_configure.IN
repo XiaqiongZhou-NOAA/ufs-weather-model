@@ -1,0 +1,24 @@
+total_member:            1
+print_esmf:              .true.
+PE_MEMBER01:             144
+start_year:              2016
+start_month:             10
+start_day:               03
+start_hour:              00
+start_minute:            0
+start_second:            0
+nhours_fcst:             288
+RUN_CONTINUE:            .false.
+ENS_SPS:                 .false.
+
+dt_atmos:                1800
+calendar:                'julian'
+cpl:                     .F.
+memuse_verbose:          .false.
+atmos_nthreads:          1
+use_hyper_thread:        .false.
+ncores_per_node:         40
+restart_interval:        0
+output_1st_tstep_rst:    .false.
+
+quilting:                .false.
