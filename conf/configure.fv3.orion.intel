@@ -33,6 +33,7 @@ HYDRO = N
 CCPP = N
 STATIC = N
 QUAD_PRECISION = Y
+SW_DYNAMICS = N
 
 include       $(ESMFMKFILE)
 ESMF_INC    = $(ESMF_F90COMPILEPATHS)
@@ -109,6 +110,10 @@ endif
 
 ifeq ($(QUAD_PRECISION),Y)
 CPPDEFS += -DENABLE_QUAD_PRECISION
+endif
+
+ifeq ($(SW_DYNAMICS),Y)
+CPPDEFS += -DSW_DYNAMICS
 endif
 
 FFLAGS_OPT = -O2 -debug minimal -fp-model source -qoverride-limits -qopt-prefetch=3
