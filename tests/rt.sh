@@ -378,11 +378,7 @@ done
 if [[ $MACHINE_ID = hera.* ]] || [[ $MACHINE_ID = orion.* ]] || [[ $MACHINE_ID = cheyenne.* ]]; then
   RTPWD=${RTPWD:-$DISKNM/NEMSfv3gfs/develop-20200701/${COMPILER^^}}
 else
-<<<<<<< HEAD
-  RTPWD=${RTPWD:-$DISKNM/NEMSfv3gfs/develop-20191230}
-=======
   RTPWD=${RTPWD:-$DISKNM/NEMSfv3gfs/develop-20200701}
->>>>>>> EMC/develop
 fi
 
 shift $((OPTIND-1))
