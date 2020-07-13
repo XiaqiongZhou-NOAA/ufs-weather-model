@@ -1,0 +1,5 @@
+COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                                                                 | standard    | hera.intel     | fv3         |
+
+# Run most tests using the compile.sh version of fv3:
+RUN     | fv3_sw                                                                                                                    | standard    |                | fv3         |
+
