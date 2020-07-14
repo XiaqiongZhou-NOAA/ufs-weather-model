@@ -1,5 +1,5 @@
-COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                                                                 | standard    | hera.intel     | fv3         |
-
-# Run most tests using the compile.sh version of fv3:
-RUN     | fv3_sw                                                                                                                    | standard    |                | fv3         |
+ COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | wcoss_cray     | fv3         |
+COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | wcoss_dell_p3  | fv3         |
+COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | hera.intel     | fv3         |
+RUN     | fv3_sw                                                                                                               | standard    |                | fv3         |
 
