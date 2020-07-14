@@ -1,3 +1,77 @@
-Tue Jul 14 12:49:43 UTC 2020
+Tue Jul 14 12:56:37 UTC 2020
 Start Regression test
 
+
+baseline dir = /gpfs/dell2/emc/modeling/noscrub/emc.nemspara/RT/NEMSfv3gfs/develop-20200701/fv3_sw
+working dir  = /gpfs/dell2/ptmp/Xiaqiong.Zhou/FV3_RT/rt_181966/fv3_sw
+Checking test 001 fv3_sw results ....
+ Comparing atmos_4xdaily.tile1.nc ............MISSING baseline
+ Comparing atmos_4xdaily.tile2.nc ............MISSING baseline
+ Comparing atmos_4xdaily.tile3.nc ............MISSING baseline
+ Comparing atmos_4xdaily.tile4.nc ............MISSING baseline
+ Comparing atmos_4xdaily.tile5.nc ............MISSING baseline
+ Comparing atmos_4xdaily.tile6.nc ............MISSING baseline
+ Comparing phyf000.tile1.nc ............MISSING file
+ Comparing phyf000.tile2.nc ............MISSING file
+ Comparing phyf000.tile3.nc ............MISSING file
+ Comparing phyf000.tile4.nc ............MISSING file
+ Comparing phyf000.tile5.nc ............MISSING file
+ Comparing phyf000.tile6.nc ............MISSING file
+ Comparing phyf024.tile1.nc ............MISSING file
+ Comparing phyf024.tile2.nc ............MISSING file
+ Comparing phyf024.tile3.nc ............MISSING file
+ Comparing phyf024.tile4.nc ............MISSING file
+ Comparing phyf024.tile5.nc ............MISSING file
+ Comparing phyf024.tile6.nc ............MISSING file
+ Comparing dynf000.tile1.nc ............MISSING file
+ Comparing dynf000.tile2.nc ............MISSING file
+ Comparing dynf000.tile3.nc ............MISSING file
+ Comparing dynf000.tile4.nc ............MISSING file
+ Comparing dynf000.tile5.nc ............MISSING file
+ Comparing dynf000.tile6.nc ............MISSING file
+ Comparing dynf024.tile1.nc ............MISSING file
+ Comparing dynf024.tile2.nc ............MISSING file
+ Comparing dynf024.tile3.nc ............MISSING file
+ Comparing dynf024.tile4.nc ............MISSING file
+ Comparing dynf024.tile5.nc ............MISSING file
+ Comparing dynf024.tile6.nc ............MISSING file
+ Comparing RESTART/coupler.res ............MISSING baseline
+ Comparing RESTART/fv_core.res.nc ............MISSING baseline
+ Comparing RESTART/fv_core.res.tile1.nc ............MISSING baseline
+ Comparing RESTART/fv_core.res.tile2.nc ............MISSING baseline
+ Comparing RESTART/fv_core.res.tile3.nc ............MISSING baseline
+ Comparing RESTART/fv_core.res.tile4.nc ............MISSING baseline
+ Comparing RESTART/fv_core.res.tile5.nc ............MISSING baseline
+ Comparing RESTART/fv_core.res.tile6.nc ............MISSING baseline
+ Comparing RESTART/fv_srf_wnd.res.tile1.nc ............MISSING baseline
+ Comparing RESTART/fv_srf_wnd.res.tile2.nc ............MISSING baseline
+ Comparing RESTART/fv_srf_wnd.res.tile3.nc ............MISSING baseline
+ Comparing RESTART/fv_srf_wnd.res.tile4.nc ............MISSING baseline
+ Comparing RESTART/fv_srf_wnd.res.tile5.nc ............MISSING baseline
+ Comparing RESTART/fv_srf_wnd.res.tile6.nc ............MISSING baseline
+ Comparing RESTART/fv_tracer.res.tile1.nc ............MISSING baseline
+ Comparing RESTART/fv_tracer.res.tile2.nc ............MISSING baseline
+ Comparing RESTART/fv_tracer.res.tile3.nc ............MISSING baseline
+ Comparing RESTART/fv_tracer.res.tile4.nc ............MISSING baseline
+ Comparing RESTART/fv_tracer.res.tile5.nc ............MISSING baseline
+ Comparing RESTART/fv_tracer.res.tile6.nc ............MISSING baseline
+ Comparing RESTART/phy_data.tile1.nc ............MISSING file
+ Comparing RESTART/phy_data.tile2.nc ............MISSING file
+ Comparing RESTART/phy_data.tile3.nc ............MISSING file
+ Comparing RESTART/phy_data.tile4.nc ............MISSING file
+ Comparing RESTART/phy_data.tile5.nc ............MISSING file
+ Comparing RESTART/phy_data.tile6.nc ............MISSING file
+ Comparing RESTART/sfc_data.tile1.nc ............MISSING file
+ Comparing RESTART/sfc_data.tile2.nc ............MISSING file
+ Comparing RESTART/sfc_data.tile3.nc ............MISSING file
+ Comparing RESTART/sfc_data.tile4.nc ............MISSING file
+ Comparing RESTART/sfc_data.tile5.nc ............MISSING file
+ Comparing RESTART/sfc_data.tile6.nc ............MISSING file
+Test 001 fv3_sw FAIL
+
+FAILED TESTS: 
+Test fv3_sw failed 
+
+REGRESSION TEST FAILED
+Tue Jul 14 13:00:47 UTC 2020
+Elapsed time: 00h:04m:13s. Have a nice day!
