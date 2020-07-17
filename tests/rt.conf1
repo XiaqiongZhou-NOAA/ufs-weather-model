@@ -1,5 +1,9 @@
- COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | wcoss_cray     | fv3         |
+COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | wcoss_cray     | fv3         |
 COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | wcoss_dell_p3  | fv3         |
 COMPILE |    SW_DYNAMICS=Y HYDRO=Y TEST_TRACER=Y         DEBUG=Y                                                                         | standard    | hera.intel     | fv3         |
 RUN     | fv3_sw                                                                                                               | standard    |                | fv3         |
+COMPILE | CCPP=Y SUITES=FV3_GFS_2017_fv3wam                                                                                                    | standard    | wcwss_cray     | fv3         |
+COMPILE | CCPP=Y SUITES=FV3_GFS_2017_fv3wam                                                                                                    | standard    | wcoss_dell_p3  | fv3         |
+COMPILE | CCPP=Y SUITES=FV3_GFS_2017_fv3wam                                                                                                    | standard    | hera.intel     | fv3         |
 
+RUN     | fv3_ccpp_test_cases-55                                                                                                                    | standard    |                | fv3
