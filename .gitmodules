@@ -1,6 +1,6 @@
 [submodule "FV3"]
 	path = FV3
-	url = https://github.com/Xiaqiong.Zhou/fv3atm
+	url = https://github.com/XiaqiongZhou-NOAA/fv3atm
 	branch = production/GFS.v16
 [submodule "NEMS"]
 	path = NEMS
