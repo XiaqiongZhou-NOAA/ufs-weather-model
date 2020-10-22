@@ -115,16 +115,21 @@ export warm_start=${warm_start:-".false."}
 if [ $warm_start = ".false." ]; then
 #if [ -d $IC_DIR/${CASE}_$CDATE ]; then
 # $NCP $IC_DIR/${CASE}_$CDATE/* $DATA/INPUT/.
+
  if [ -d $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE} ]; then
   $NCP $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE}/* $DATA/INPUT/.
- else
-  for file in $MEMDIR/INPUT/*.nc; do
+ else 
+  if [ -d $IC_DIR/INPUT ]; then
+   $NCP $IC_DIR/INPUT/* $DATA/INPUT/.
+  else
+   for file in $MEMDIR/INPUT/*.nc; do
     file2=$(echo $(basename $file))
     fsuf=`echo $file2 | cut -c1-3`
     if [ $fsuf = "gfs" -o $fsuf = "sfc" ]; then
       $NLN $file $DATA/INPUT/$file2
     fi
-  done
+   done
+  fi
  fi
 else
   for file in $MEMDIR/RESTART/*.nc; do
@@ -532,11 +537,19 @@ cat > input.nml <<EOF
   mountain = $mountain
   ncep_ic = ${ncep_ic:-".false."}
   d_con = ${D_CON:-$d_con}
+<<<<<<< HEAD
   hord_mt = ${HORD_MT:-$hord_mt}
   hord_vt = ${HORD_VT:-$hord_xx}
   hord_tm = ${HORD_TM:-$hord_xx}
   hord_dp = ${HORD_DP:-"6"}
   hord_tr = ${HORD_TR:-"8"}
+=======
+  hord_mt = $hord_mt
+  hord_vt = $hord_xx
+  hord_tm = $hord_xx
+  hord_dp = ${hord_dp:-"6"}
+  hord_tr = ${hord_tr:-"8"}
+>>>>>>> cde694a69c3e5fbfd804fdd21ce172edb1cab411
   adjust_dry_mass = ${adjust_dry_mass:-".false."}
   do_sat_adj = ${do_sat_adj:-".false."}
   consv_te = $consv_te
