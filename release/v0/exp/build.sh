@@ -77,6 +77,9 @@ fi
  molecular_diffusion_option="MOLECULAR_DIFFUSION=Y" ; mode=$mode"MD"
  extra_options=$extra_options" "$molecular_diffusion_option
 
+ idea_phys_option="IDEA_PHYS=Y" ; mode=$mode"IP"
+ extra_options=$extra_options" "$idea_phys_option
+
 #deep_atmos_option="DEEP_ATMOS_DYNAMICS=Y" ; mode=$mode"DD"
 #extra_options=$extra_options" "$deep_atmos_option
 
