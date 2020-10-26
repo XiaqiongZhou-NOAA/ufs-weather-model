@@ -80,6 +80,9 @@ fi
 #deep_atmos_option="DEEP_ATMOS_DYNAMICS=Y" ; mode=$mode"DD"
 #extra_options=$extra_options" "$deep_atmos_option
 
+ idea_phys="IDEA_PHYS=Y" ; mode=$mode"IP"
+ extra_options=$extra_options" "$idea_phys
+
 #idea_conv_adj_option="IDEA_CONV_ADJ=Y" ; mode=$mode"CA"
 #extra_options=$extra_options" "$idea_conv_adj_option
 
