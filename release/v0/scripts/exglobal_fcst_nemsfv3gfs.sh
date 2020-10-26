@@ -51,6 +51,7 @@ export BASE_DATA=${BASE_DATA:-$NWPROD}
 export FIX_DIR=${FIX_DIR:-$BASE_DATA/fix}
 export FIX_AM=${FIX_AM:-$FIX_DIR/fix_am}
 export FIX_FV3=${FIX_FV3:-$FIX_DIR/fix_fv3}
+export FIX_WAM=${FIX_WAM:-$FIX_DIR/fix_wam}
 export DATA=${DATA:-$STMP/$LOGNAME/pr${PSLOT}${CASE}_${CDATE}}    #temporary running directory
 export ROTDIR=${ROTDIR:-$PTMP/$LOGNAME/pr${PSLOT}}                #rorating archive directory
 export IC_DIR=${IC_DIR:-$PTMP/$LOGNAME/ICs}                       #cold start initial conditions
@@ -203,6 +204,9 @@ fi
 
 export FNGLAC=${FNGLAC:-"$FIX_AM/global_glacier.2x2.grb"}
 export FNMXIC=${FNMXIC:-"$FIX_AM/global_maxice.2x2.grb"}
+
+
+
 export FNSNOC=${FNSNOC:-"$FIX_AM/global_snoclim.1.875.grb"}
 export FNZORC=${FNZORC:-"igbp"}
 export FNALBC2=${FNALBC2:-"$FIX_AM/global_albedo4.1x1.grb"}

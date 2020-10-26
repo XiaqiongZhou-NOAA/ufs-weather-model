@@ -112,6 +112,8 @@ endif
 
 ifeq ($(IDEA_PHYS),Y)
 CPPDEFS += -DIDEA_PHYS
+#FFLAGS += -check bounds
+#FFLAGS += -warn interfaces -check bounds
 endif
 
 ifeq ($(IDEA_CONV_ADJ),Y)

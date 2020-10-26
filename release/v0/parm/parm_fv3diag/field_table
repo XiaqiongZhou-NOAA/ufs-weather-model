@@ -30,13 +30,13 @@
            "longname",     "ozone mixing ratio"
            "units",        "kg/kg"
        "profile_type", "fixed", "surface_value=1.e30" /
-# prognostic subgrid scale turbulent kinetic energy
- "TRACER", "atmos_mod", "sgs_tke"
-           "longname",     "subgrid scale turbulent kinetic energy"
-           "units",        "m2/s2"
-       "profile_type", "fixed", "surface_value=0.0" /
-# non-prognostic cloud amount
- "TRACER", "atmos_mod", "cld_amt"
-           "longname",     "cloud amount"
-           "units",        "1"
+#4 prognostic specific single oxygen
+ "TRACER", "atmos_mod", "spfo"
+           "longname",     "specific o"
+           "units",        "kg/kg"
+       "profile_type", "fixed", "surface_value=1.e30" /
+#5 prognostic specific o2
+ "TRACER", "atmos_mod", "spfo2"
+           "longname",     "specific oxygen"
+           "units",        "kg/kg"
        "profile_type", "fixed", "surface_value=1.e30" /
