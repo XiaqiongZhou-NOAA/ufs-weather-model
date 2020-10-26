@@ -537,19 +537,11 @@ cat > input.nml <<EOF
   mountain = $mountain
   ncep_ic = ${ncep_ic:-".false."}
   d_con = ${D_CON:-$d_con}
-<<<<<<< HEAD
   hord_mt = ${HORD_MT:-$hord_mt}
   hord_vt = ${HORD_VT:-$hord_xx}
   hord_tm = ${HORD_TM:-$hord_xx}
   hord_dp = ${HORD_DP:-"6"}
   hord_tr = ${HORD_TR:-"8"}
-=======
-  hord_mt = $hord_mt
-  hord_vt = $hord_xx
-  hord_tm = $hord_xx
-  hord_dp = ${hord_dp:-"6"}
-  hord_tr = ${hord_tr:-"8"}
->>>>>>> cde694a69c3e5fbfd804fdd21ce172edb1cab411
   adjust_dry_mass = ${adjust_dry_mass:-".false."}
   do_sat_adj = ${do_sat_adj:-".false."}
   consv_te = $consv_te
