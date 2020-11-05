@@ -5,30 +5,6 @@ export ACCNR=${ACCNR:-nems}
 
 case $(hostname -f) in
 
-  g10a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### gyre 1
-  g10a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### gyre 2
-  g14a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### gyre 3
-  g14a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### gyre 4
-
-  t10a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### tide 1
-  t10a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### tide 2
-  t14a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### tide 3
-  t14a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=1;; ### tide 4
-
-  g20a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### gyre phase2
-  g20a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### gyre phase2
-  g20a3.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### gyre phase2
-  g21a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### gyre phase2
-  g21a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### gyre phase2
-  g21a3.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### gyre phase2
-
-  t20a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### tide phase2
-  t20a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### tide phase2
-  t20a3.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### tide phase2
-  t21a1.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### tide phase2
-  t21a2.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### tide phase2
-  t21a3.ncep.noaa.gov)     MACHINE_ID=wcoss ; export pex=2;; ### tide phase2
-
   llogin1)                 MACHINE_ID=wcoss_cray ;; ### luna
   llogin2)                 MACHINE_ID=wcoss_cray ;; ### luna
   llogin3)                 MACHINE_ID=wcoss_cray ;; ### luna
@@ -116,12 +92,12 @@ case $(hostname -f) in
   login4.stampede2.tacc.utexas.edu) MACHINE_ID=stampede ;; ### stampede4
 esac
 
-# Overwrite auto-detect with NEMS_MACHINE if set
-MACHINE_ID=${NEMS_MACHINE:-${MACHINE_ID}}
+# Overwrite auto-detect with RT_MACHINE if set
+MACHINE_ID=${RT_MACHINE:-${MACHINE_ID}}
 
 # Append compiler
 if [ $MACHINE_ID = orion ] || [ $MACHINE_ID = hera ] || [ $MACHINE_ID = cheyenne ] || [ $MACHINE_ID = jet ] || [ $MACHINE_ID = gaea ] || [ $MACHINE_ID = stampede ] ; then
-    MACHINE_ID=${MACHINE_ID}.${COMPILER}
+    MACHINE_ID=${MACHINE_ID}.${RT_COMPILER}
 fi
 
 echo "Machine: " $MACHINE_ID "    Account: " $ACCNR
