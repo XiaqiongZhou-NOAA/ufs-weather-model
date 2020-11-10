@@ -88,6 +88,18 @@ else
     CMAKE_FLAGS="${CMAKE_FLAGS} -DMULTI_GASES=OFF"
 fi
 
+if [[ "${MAKE_OPT}" == *"MOLECULAR_DIFFUSION=Y"* ]]; then
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DMOLECULAR_DIFFUSION=ON"
+else
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DMOLECULAR_DIFFUSION=OFF"
+fi
+
+if [[ "${MAKE_OPT}" == *"IDEA_PHYS=Y"* ]]; then
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DIDEA_PHYS=ON"
+else
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DIDEA_PHYS=OFF"
+fi
+
 if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
 
   # FIXME - create CCPP include directory before building FMS to avoid
