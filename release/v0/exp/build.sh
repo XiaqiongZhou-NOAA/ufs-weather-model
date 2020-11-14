@@ -68,7 +68,10 @@ fi
 
  extra_options=""
 
- ccpp_option="CCPP=Y HYBRID=N STATIC=Y SUITES=FV3_GFS_2017_fv3wam"; mode=$mode"ccpp"
+ ccpp_option="CCPP=N"; mode=$mode""
+#ccpp_option="CCPP=Y HYBRID=N STATIC=Y SUITES=FV3_GFS_2017_wam"; mode=$mode"ccpp"
+#ccpp_option="CCPP=Y HYBRID=N STATIC=Y SUITES=FV3_GFS_2017_fv3wam"; mode=$mode"ccpp"
+#ccpp_option="CCPP=Y HYBRID=N STATIC=Y SUITES=FV3_GFS_2017"; mode=$mode"ccpp"
  extra_options=$extra_options" "$ccpp_option
 
  multi_gases_option="MULTI_GASES=Y" ; mode=$mode"MG"

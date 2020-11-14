@@ -566,12 +566,13 @@ cat > input.nml <<EOF
 /
 
 &molecular_diffusion_nml
-  tau_visc = ${tau_visc:-1.0}
-  tau_cond = ${tau_cond:-1.0}
-  tau_diff = ${tau_diff:-1.0}
-  md_n_layers = ${md_n_layers-10}
-  md_n_repeat = ${md_n_repeat:-1}
-  md_wait_hr  = ${md_wait_hr:-0.0}
+  tau_visc = ${tau_visc:-0.5}
+  tau_cond = ${tau_cond:-0.5}
+  tau_diff = ${tau_diff:-0.5}
+  md_layers = ${md_layers-100}
+  md_reflev = ${md_reflev-50}
+  md_repeat = ${md_repeat:-1}
+  md_wait_hr  = ${md_wait_hr:-2.0}
 /
 
 &external_ic_nml
