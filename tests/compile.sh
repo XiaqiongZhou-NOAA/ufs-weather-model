@@ -53,7 +53,7 @@ BUILD_JOBS=${BUILD_JOBS:-8}
 hostname
 
 set +x
-module purge
+# module purge #turn on on orion??
 if [[ $MACHINE_ID == macosx.* ]] || [[ $MACHINE_ID == linux.* ]]; then
   source $PATHTR/modulefiles/${MACHINE_ID}/fv3
 else

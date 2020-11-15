@@ -5,7 +5,7 @@ proc ModulesHelp {} {
 }
 
 ##
-=======
+
 module-whatis "loads UFS Model prerequisites for Hera/Intel"
 
 module use /contrib/sutils/modulefiles

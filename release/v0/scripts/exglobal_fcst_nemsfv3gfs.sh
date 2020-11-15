@@ -1,7 +1,7 @@
 #!/bin/ksh
 ################################################################################
 # UNIX Script Documentation Block
-# Script name:         exglobal_fcst_fv3gfs.sh.ecf
+# Script name:         exglobal_fcst_fv3gf.sh.ecf
 # Script description:  Runs a global FV3GFS model forecast
 #
 # Author:   Fanglin Yang       Org: NCEP/EMC       Date: 2016-11-15
@@ -200,6 +200,10 @@ if [ $iaer -gt 0 ] ; then
   for file in `ls $FIX_AM/global_volcanic_aerosols* ` ; do
     $NLN $file $DATA/$(echo $(basename $file) | sed -e "s/global_//g")
   done
+fi
+
+if [ ${IDEA_PHYS} = "Y" ] ; then
+   $NLN $FIX_WAM/*   $DATA/
 fi
 
 export FNGLAC=${FNGLAC:-"$FIX_AM/global_glacier.2x2.grb"}
