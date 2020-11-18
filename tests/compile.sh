@@ -101,6 +101,12 @@ else
     CMAKE_FLAGS="${CMAKE_FLAGS} -DIDEA_PHYS=OFF"
 fi
 
+if [[ "${MAKE_OPT}" == *"DEEP_ATMOS_DYNAMICS=Y"* ]]; then
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DDEEP_ATMOS_DYNAMICS=ON"
+else
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DDEEP_ATMOS_DYNAMICS=OFF"
+fi
+
 if [[ "${MAKE_OPT}" == *"CCPP=Y"* ]]; then
 
   # FIXME - create CCPP include directory before building FMS to avoid

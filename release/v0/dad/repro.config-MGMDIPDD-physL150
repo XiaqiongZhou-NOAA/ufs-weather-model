@@ -17,7 +17,7 @@ export PARTITION=orion  # orion(bunw), debug(bdw), bigmen(bduw), service(buw)
 
 # configuration
 export LEVS=150         # 64? 150? 128? 65?
-export PSLOT=MGMDIPL150 # user-defined experiment name
+export PSLOT=MGMDIPDDL150 # user-defined experiment name
 export CASE=C96         # cubed-sphere resolution, C96 currently only tested
 export CDATE=2017011906 # initial condition datetime
 export FHMAX=144        # length of free forecast (hours)
@@ -39,7 +39,7 @@ fi
 export MODE=64bit       # dycore precision:   32bit, 64bit
 export TYPE=nh          # hydrostatic option: nh, hydro
 #export COMP=prod                   # compiling mode:     debug, repro, prod
- export COMP=prodMGMDIP
+ export COMP=prodMGMDIPDD
 #export COMP=debugMG
 #export COMP=debugMGMDIP
 export HYPT=on          # hyperthreading:     on, off
@@ -81,7 +81,7 @@ export DELTIM=225
  export md_wait_hr=2.0
  export md_repeat=1
  export md_layers=100
- export md_reflev=50
+ export md_reflev=0
 # if md_reflev=0 then tau_* values are for all nd_layers
 # if md_reflev>0 then layers between md_reflev and md_layers are 1,
 # and 1 (top layer) to md_reflev are linear from 0.5 to 1.0

@@ -20,17 +20,20 @@ export LEVS=150         # 64? 150? 128? 65?
 export PSLOT=MGMDL150 # user-defined experiment name
 export CASE=C96         # cubed-sphere resolution, C96 currently only tested
 export CDATE=2017011906 # initial condition datetime
-export FHMAX=48         # length of free forecast (hours)
+export FHMAX=120         # length of free forecast (hours)
 export FHOUT=1           # length of free forecast (hours)
 
 # user configurable directories (dir.config)
  export BASEDIR=`pwd`/../../..                     # model directory
-# orion
-#export IC_DIR=/work/noaa/global/hjuang/ICS/fv3/${CDATE} 
-#export BASE_GSM=/work/noaa/global/hjuang/fv3      # base folder for fix fields
-# hera
+
+if [ ${machine} = "orion" ] ; then
+ export IC_DIR=/work/noaa/global/hjuang/ICS/fv3/${CDATE} 
+ export BASE_GSM=/work/noaa/global/hjuang/fv3      # base folder for fix fields
+fi
+if [ ${machine} = "hera" ] ; then
  export IC_DIR=/$ACCT_SCRATCH/NCEPDEV/$ACCT_DISK/$USER/ICS/fv3/${CDATE}
  export BASE_GSM=/scratch1/NCEPDEV/swpc/save/Adam.Kubaryk/fv3
+fi
 
 # computational settings (compute.config)
 export MODE=64bit       # dycore precision:   32bit, 64bit

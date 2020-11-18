@@ -25,9 +25,7 @@ cat >> temp_job.sh << EOF
 #SBATCH -t $WALLCLOCK
 # walltime should be a resolution and fcst length thing imo
 set -ax
-# ---- orion
-#. /apps/lmod/init/sh
-# ---- hera
+
  . /apps/lmod/lmod/init/sh
 
 cd $SCRIPTSDIR
@@ -44,11 +42,7 @@ CONFIGDIR=$CONFIGDIR
 
 if [ $CHGRES != "NO" ] ; then
 module purge
-# ---- orion
-#source $GLOBAL_WORKFLOW_DIR/modulefiles/fv3gfs/global_chgres.theia
-# ---- hera
- source $GLOBAL_WORKFLOW_DIR/modulefiles/fv3gfs/global_chgres.hera
-
+source $GLOBAL_WORKFLOW_DIR/modulefiles/fv3gfs/global_chgres.${machine}
 export OUTDIR=$IC_DIR/IDVT${IDVT}/L${LEVS}/CASE_$CASE
 . $CHGRESWRAPPER
 fi
@@ -60,10 +54,7 @@ if [ ${CHGRES_ONLY:-"NO"} != "YES" ] ; then
 export VERBOSE=YES
  export CCPP_SUITE=$BASEDIR/FV3/ccpp/suites/suite_FV3_GFS_2017_fv3wam.xml
 #export CCPP_SUITE=$BASEDIR/FV3/ccpp/suites/suite_FV3_GFS_v15plus.xml
-module purge
-module unuse ../../../NEMS/src/conf
-module use -a $BASEDIR/NEMS/src/conf
-module load modules.nems
+
 . $FCSTSH
 
 ##-------------------------------------------------------
@@ -89,9 +80,7 @@ cat >> remap_job_$PSLOT.sh << EOF
 #SBATCH -n $REMAP_TASKS
 #SBATCH -t 00:20:00
 set -ax
-# ---- orion
-#. /apps/lmod/init/sh
-# ---- hera
+
  . /apps/lmod/lmod/init/sh
 
 cd $SCRIPTSDIR
@@ -104,10 +93,8 @@ CONFIGDIR=$CONFIGDIR
 . $CONFIGDIR/workflow.sh $1
 
 export DATA=${MEMDIR:-$ROTDIR/${PREINP:-"gfs"}.${yyyymmdd:-`echo $CDATE | cut -c1-8`}/${hh:-`echo $CDATE | cut -c9-10`}/${MEMCHAR:-""}}
-# ---- orion
-#source $GLOBAL_WORKFLOW_DIR/modulefiles/fv3gfs/fre-nctools.orion
-# ---- hera
- source $GLOBAL_WORKFLOW_DIR/modulefiles/fv3gfs/fre-nctools.hera
+
+source $GLOBAL_WORKFLOW_DIR/modulefiles/fv3gfs/fre-nctools.${machine}
 
 . $REMAPSH
 

@@ -1,17 +1,22 @@
 #!/bin/sh
 CONFIGDIR=`pwd`/config
-# --- orion
-#. /apps/lmod/init/sh
-# --- hera
+
  . /apps/lmod/lmod/init/sh
 
+. $CONFIGDIR/../$1
+
 # modules
-# --- orion
-#module use -a ../../../modulefiles/orion.intel
-#module load fv3
-# --- hera
- module use -a ../../../NEMS/src/conf
- module load modules.nems
+
+if [ ${machine} = "orion" ] ; then
+ module use -a ../../../modulefiles/orion.intel
+ module load fv3
+fi
+if [ ${machine} = "hera" ] ; then
+ module use -a ../../../modulefiles/hera.intel
+ module load fv3
+#module use -a ../../../NEMS/src/conf
+#module load modules.nems
+fi
 
 ##-------------------------------------------------------
 ## configuration for FV3 model run

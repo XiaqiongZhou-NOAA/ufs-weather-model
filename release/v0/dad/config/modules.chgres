@@ -1,2 +1,5 @@
-module use -a /work/noaa/swpc/akubaryk/ufs-weather-model/modulefiles/orion.intel
+
+if [ ${machine} = "orion" ] ; then
+ module use -a /work/noaa/global/hjuang/2020/ufs-weather-model/modulefiles/orion.intel
+fi
 module load fv3
