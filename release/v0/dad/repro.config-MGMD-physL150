@@ -20,7 +20,7 @@ export LEVS=150         # 64? 150? 128? 65?
 export PSLOT=MGMDL150 # user-defined experiment name
 export CASE=C96         # cubed-sphere resolution, C96 currently only tested
 export CDATE=2017011906 # initial condition datetime
-export FHMAX=120         # length of free forecast (hours)
+export FHMAX=156         # length of free forecast (hours)
 export FHOUT=1           # length of free forecast (hours)
 
 # user configurable directories (dir.config)
@@ -44,6 +44,7 @@ export TYPE=nh          # hydrostatic option: nh, hydro
 #export COMP=debugMGMD
 export HYPT=on          # hyperthreading:     on, off
 export mpiexec=`which mpirun`
+
 # post processing (stitch 6-tile grids into global netcdf, remap.config)
 export REMAP=YES        # YES or NO
 
@@ -51,8 +52,8 @@ export REMAP=YES        # YES or NO
 #export fv_debug=.true.
 export DELTIM=225
 # ---- adiabatic run -------------------
-#export adiabatic=.true.
-#export dycore_only=.true.
+ export adiabatic=.true.
+ export dycore_only=.true.
 #export do_sat_adj=.false.
 #export print_esmf=.true.
 
@@ -79,7 +80,7 @@ export DELTIM=225
 ##### molecular diffusion efolding day
  export md_wait_hr=2.0
  export md_layers=100
- export md_reflev=50
+ export md_reflev=0
  export md_repeat=1
 # if md_reflev=0 then tau_* values are for all nd_layers
 # if md_reflev>0 then layers between md_reflev and md_layers are 1,
@@ -87,6 +88,9 @@ export DELTIM=225
  export tau_visc=0.50
  export tau_cond=0.50
  export tau_diff=0.50
+
+# ---- conservation default is 1.0 for nonhydrostatic.
+#export consv_te=0.0
 
 # ---- turn on for L150 
  export levr=90

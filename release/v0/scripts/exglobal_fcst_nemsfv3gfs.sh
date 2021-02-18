@@ -118,8 +118,10 @@ if [ $warm_start = ".false." ]; then
 #if [ -d $IC_DIR/${CASE}_$CDATE ]; then
 # $NCP $IC_DIR/${CASE}_$CDATE/* $DATA/INPUT/.
 
- if [ -d $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE} ]; then
-  $NCP $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE}/* $DATA/INPUT/.
+ #if [ -d $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE} ]; then
+ # $NCP   $IC_DIR/IDVT$IDVT/L$LEVS/CASE_${CASE}/* $DATA/INPUT/.
+ if [ -d $IC_DIR/WAM_L$LEVS/CASE_${CASE} ]; then
+  $NCP   $IC_DIR/WAM_L$LEVS/CASE_${CASE}/* $DATA/INPUT/.
  else 
   if [ -d $IC_DIR/INPUT ]; then
    $NCP $IC_DIR/INPUT/* $DATA/INPUT/.

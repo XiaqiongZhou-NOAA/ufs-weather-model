@@ -17,7 +17,7 @@ export PARTITION=orion  # orion(bunw), debug(bdw), bigmen(bduw), service(buw)
 
 # configuration
 export LEVS=150         # 64? 150? 128? 65?
-export PSLOT=MGMDIPDDL150 # user-defined experiment name
+export PSLOT=MGMDIPDDL150X # user-defined experiment name
 export CASE=C96         # cubed-sphere resolution, C96 currently only tested
 export CDATE=2017011906 # initial condition datetime
 export FHMAX=144        # length of free forecast (hours)
