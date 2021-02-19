@@ -1,0 +1,14 @@
+This durectory contain repro script for submit.sh to submit job as
+   ./submit.sh repro.config-MGMDIPDD-physL150
+check job by qq
+tail job as "tail -f *$JOBID |grep isec"
+
+2021/2/18
+based on 05 to create 06 and pushed, working on spox for consisyency.
+
+2021/2/18
+commit and pushed in udhmhj.05
+Finished tests of new GFS IC from chgres_cube with all options MGMDIPDD
+-- concerns -- 1. for consistency, plan to change spfox to spox as sphum
+               2. may have problem in idea_phys due to thermosphere heating
+               3. check more in domsin halo dimension for MGMD

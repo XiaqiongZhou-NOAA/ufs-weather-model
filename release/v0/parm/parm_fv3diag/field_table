@@ -31,12 +31,12 @@
            "units",        "kg/kg"
        "profile_type", "fixed", "surface_value=1.e30" /
 #4 prognostic specific single oxygen
- "TRACER", "atmos_mod", "spfo"
+ "TRACER", "atmos_mod", "spo"
            "longname",     "specific o"
            "units",        "kg/kg"
        "profile_type", "fixed", "surface_value=1.e30" /
 #5 prognostic specific o2
- "TRACER", "atmos_mod", "spfo2"
+ "TRACER", "atmos_mod", "spo2"
            "longname",     "specific oxygen"
            "units",        "kg/kg"
        "profile_type", "fixed", "surface_value=1.e30" /
