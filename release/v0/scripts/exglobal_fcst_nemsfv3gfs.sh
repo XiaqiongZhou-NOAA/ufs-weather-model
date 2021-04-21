@@ -514,7 +514,8 @@ cat > input.nml <<EOF
   n_sponge = ${n_sponge:-24}
   nudge_qv = ${nudge_qv:-".true."}
   nudge_dz = ${nudge_dz:-".false."}
-  tau = ${tau:-5.}
+  tau = ${tau:-5.0}
+  tau_w = ${tau_w:-$tau}
   rf_cutoff = ${rf_cutoff:-7.5e2}
   d2_bg_k1 = ${d2_bg_k1:-0.15}
   d2_bg_k2 = ${d2_bg_k2:-0.02}
@@ -575,12 +576,10 @@ cat > input.nml <<EOF
 /
 
 &molecular_diffusion_nml
-  tau_visc = ${tau_visc:-0.5}
-  tau_cond = ${tau_cond:-0.5}
-  tau_diff = ${tau_diff:-0.5}
+  tau_visc = ${tau_visc:-1.0}
+  tau_cond = ${tau_cond:-1.0}
+  tau_diff = ${tau_diff:-1.0}
   md_layers = ${md_layers-100}
-  md_reflev = ${md_reflev-50}
-  md_repeat = ${md_repeat:-1}
   md_wait_hr  = ${md_wait_hr:-2.0}
 /
 
