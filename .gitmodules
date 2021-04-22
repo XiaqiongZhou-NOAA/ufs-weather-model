@@ -1,7 +1,7 @@
 [submodule "FV3"]
-	path = FV3
-	url = https://github.com/HenryJuang-NOAA/fv3atm
-	branch = udhmhj.05
+ path = FV3
+ url = https://github.com/XiaqiongZhou-NOAA/fv3atm
+ branch = udhmhj
 [submodule "NEMS"]
   path = NEMS
   url = https://github.com/NOAA-EMC/NEMS
@@ -9,7 +9,7 @@
 [submodule "FMS"]
   path = FMS
   url = https://github.com/NOAA-GFDL/FMS
-  branch = master
+  branch = release/2020.04
 [submodule "WW3"]
   path = WW3
   url = https://github.com/NOAA-EMC/WW3
