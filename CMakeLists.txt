@@ -54,7 +54,8 @@ message("CMEPS ............ ${CMEPS}")
 ###############################################################################
 ### Build Options
 ###############################################################################
-set(32BIT           OFF CACHE BOOL "Enable 32BIT (single precision arithmetic in dycore)")
+set(32BIT           OFF CACHE BOOL "Enable 32BIT (single precision arithmetic in dycore and fast physics)")
+set(CCPP_32BIT      OFF CACHE BOOL "Enable CCPP_32BIT (single precision arithmetic in slow physics)")
 set(AVX2            ON  CACHE BOOL "Enable AVX2 instruction set")
 set(AVX             OFF CACHE BOOL "Enable AVX-I instruction set")
 set(SIMDMULTIARCH   OFF CACHE BOOL "Enable multi-target SIMD instruction sets")
@@ -81,6 +82,7 @@ endif()
 
 message("")
 message("32BIT ............ ${32BIT}")
+message("CCPP_32BIT ....... ${CCPP_32BIT}")
 message("AVX2 ............. ${AVX2}")
 message("SIMDMULTIARCH .... ${SIMDMULTIARCH}")
 message("DEBUG ............ ${DEBUG}")
@@ -130,7 +132,7 @@ endif()
 
 find_package(bacio 2.4.0 REQUIRED)
 find_package(sp 2.3.3 REQUIRED)
-find_package(w3nco 2.4.0 REQUIRED)
+find_package(w3emc 2.9.2 REQUIRED)
 
 # Configure Python
 find_package(Python 3.6 REQUIRED COMPONENTS Interpreter)
@@ -289,7 +291,7 @@ target_link_libraries(ufs PUBLIC "${_ufs_libs_public}")
 ###############################################################################
 add_executable(ufs_model driver/UFS.F90)
 add_dependencies(ufs_model ufs)
-target_link_libraries(ufs_model ufs esmf w3nco::w3nco_d)
+target_link_libraries(ufs_model ufs esmf w3emc::w3emc_d)
 
 ###############################################################################
 ### Install

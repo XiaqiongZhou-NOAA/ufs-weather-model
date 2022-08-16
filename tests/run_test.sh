@@ -23,6 +23,15 @@ write_fail_test() {
   exit 1
 }
 
+remove_fail_test() {
+    echo "Removing test failure flag file for ${TEST_NAME} ${TEST_NR}"
+    if [[ ${OPNREQ_TEST} == true ]] ; then
+        rm -f $PATHRT/fail_opnreq_test_${TEST_NR}
+    else
+        rm -f $PATHRT/fail_test_${TEST_NR}
+    fi
+}
+
 function compute_petbounds() {
 
   # each test MUST define ${COMPONENT}_tasks variable for all components it is using
@@ -32,7 +41,7 @@ function compute_petbounds() {
   # CHM component and mediator are running on ATM compute tasks only.
 
   local n=0
-  unset atm_petlist_bounds ocn_petlist_bounds ice_petlist_bounds wav_petlist_bounds chm_petlist_bounds med_petlist_bounds
+  unset atm_petlist_bounds ocn_petlist_bounds ice_petlist_bounds wav_petlist_bounds chm_petlist_bounds med_petlist_bounds aqm_petlist_bounds
 
   # ATM
   ATM_io_tasks=${ATM_io_tasks:-0}
@@ -65,6 +74,9 @@ function compute_petbounds() {
   # MED
   med_petlist_bounds="0 $((ATM_compute_tasks - 1))"
 
+  # AQM
+  aqm_petlist_bounds="0 $((ATM_compute_tasks - 1))"
+
   UFS_tasks=${n}
 
   echo "ATM_petlist_bounds: ${atm_petlist_bounds:-}"
@@ -73,6 +85,7 @@ function compute_petbounds() {
   echo "WAV_petlist_bounds: ${wav_petlist_bounds:-}"
   echo "CHM_petlist_bounds: ${chm_petlist_bounds:-}"
   echo "MED_petlist_bounds: ${med_petlist_bounds:-}"
+  echo "AQM_petlist_bounds: ${aqm_petlist_bounds:-}"
   echo "UFS_tasks         : ${UFS_tasks:-}"
 
 }
@@ -90,11 +103,7 @@ export COMPILE_NR=$5
 
 cd ${PATHRT}
 OPNREQ_TEST=${OPNREQ_TEST:-false}
-if [[ ${OPNREQ_TEST} == true ]]; then
-  rm -f fail_opnreq_test_${TEST_NR}
-else
-  rm -f fail_test_${TEST_NR}
-fi
+remove_fail_test
 
 [[ -e ${RUNDIR_ROOT}/run_test_${TEST_NR}.env ]] && source ${RUNDIR_ROOT}/run_test_${TEST_NR}.env
 source default_vars.sh
@@ -174,11 +183,8 @@ compute_petbounds
 
 atparse < ${PATHRT}/parm/${NEMS_CONFIGURE:-nems.configure} > nems.configure
 
-# remove after all tests pass
-if [[ $TASKS -ne $UFS_tasks ]]; then
-   echo "$TASKS -ne $UFS_tasks "
-  exit 1
-fi
+# TASKS is now set to UFS_TASKS
+export TASKS=$UFS_tasks
 
 if [[ "Q${INPUT_NEST02_NML:-}" != Q ]] ; then
     INPES_NEST=$INPES_NEST02; JNPES_NEST=$JNPES_NEST02
@@ -227,7 +233,7 @@ fi
 
 # diag table
 if [[ "Q${DIAG_TABLE:-}" != Q ]] ; then
-  cp ${PATHRT}/parm/diag_table/${DIAG_TABLE} diag_table
+  atparse < ${PATHRT}/parm/diag_table/${DIAG_TABLE} > diag_table
 fi
 # Field table
 if [[ "Q${FIELD_TABLE:-}" != Q ]] ; then
@@ -243,6 +249,11 @@ if [[ $FV3 == true ]]; then
   if [[ $TILEDFIX != .true. ]]; then
     cp ${INPUTDATA_ROOT}/FV3_fix/*.grb .
   fi
+fi
+
+# AQM
+if [[ $AQM == .true. ]]; then
+  cp ${PATHRT}/parm/aqm/aqm.rc .
 fi
 
 # Field Dictionary
@@ -306,6 +317,7 @@ NODES=$(( TASKS / TPN ))
 if (( NODES * TPN < TASKS )); then
   NODES=$(( NODES + 1 ))
 fi
+TASKS=$(( NODES * TPN ))
 
 if [[ $SCHEDULER = 'pbs' ]]; then
   atparse < $PATHRT/fv3_conf/fv3_qsub.IN > job_card
@@ -356,6 +368,9 @@ fi
 if [[ $SCHEDULER != 'none' ]]; then
   cat ${RUNDIR}/job_timestamp.txt >> ${LOG_DIR}/job_${JOB_NR}_timestamp.txt
 fi
+
+remove_fail_test
+
 ################################################################################
 # End test
 ################################################################################
