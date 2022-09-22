@@ -39,5 +39,7 @@
   url = https://github.com/NOAA-EMC/AQM
   branch = develop
 [submodule "FV3"]
-	path = FV3
-	url = https://github.com/JiliDong-NOAA/fv3atm.git
+  path = FV3
+  url = https://github.com/XiaqiongZhou-NOAA/fv3atm
+  branch = rrfs_ideal_pdc
+
