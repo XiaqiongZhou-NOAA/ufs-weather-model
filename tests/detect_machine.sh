@@ -43,6 +43,15 @@ case $(hostname -f) in
   gaea15.ncrc.gov)         MACHINE_ID=gaea ;; ### gaea15
   gaea16.ncrc.gov)         MACHINE_ID=gaea ;; ### gaea16
 
+  gaea51.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea51
+  gaea52.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea52
+  gaea53.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea53
+  gaea54.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea54
+  gaea55.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea55
+  gaea56.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea56
+  gaea57.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea57
+  gaea58.ncrc.gov)         MACHINE_ID=gaea-c5 ;; ### gaea58
+
   hfe01)                   MACHINE_ID=hera ;; ### hera01
   hfe02)                   MACHINE_ID=hera ;; ### hera02
   hfe03)                   MACHINE_ID=hera ;; ### hera03
@@ -75,6 +84,11 @@ case $(hostname -f) in
   Orion-login-3.HPC.MsState.Edu) MACHINE_ID=orion ;; ### orion3
   Orion-login-4.HPC.MsState.Edu) MACHINE_ID=orion ;; ### orion4
 
+  Hercules-login-1.HPC.MsState.Edu) MACHINE_ID=hercules;; ### hercules1 
+  Hercules-login-2.HPC.MsState.Edu) MACHINE_ID=hercules;; ### hercules2 
+  Hercules-login-3.HPC.MsState.Edu) MACHINE_ID=hercules;; ### hercules3
+  Hercules-login-4.HPC.MsState.Edu) MACHINE_ID=hercules;; ### hercules4
+
   cheyenne1.cheyenne.ucar.edu) MACHINE_ID=cheyenne ;; ### cheyenne1
   cheyenne2.cheyenne.ucar.edu) MACHINE_ID=cheyenne ;; ### cheyenne2
   cheyenne3.cheyenne.ucar.edu) MACHINE_ID=cheyenne ;; ### cheyenne3
@@ -105,7 +119,7 @@ case $(hostname -f) in
   
 esac
 
-case $(echo $PW_CSP) in
+case $(echo ${PW_CSP:-nono}) in
 
   aws) MACHINE_ID=aws ;; ### parallelworks aws
   google)  MACHINE_ID=gcp ;; ### parallelworks gcp
@@ -116,6 +130,3 @@ esac
 
 # Overwrite auto-detect with RT_MACHINE if set
 MACHINE_ID=${RT_MACHINE:-${MACHINE_ID}}
-
-# Append compiler
-MACHINE_ID=${MACHINE_ID}.${RT_COMPILER}

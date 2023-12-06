@@ -94,7 +94,7 @@
   ocn_omp_num_threads=1
   wav_omp_num_threads=1
 
-if [[ $MACHINE_ID = wcoss2.* || $MACHINE_ID = acorn.* ]]; then
+if [[ $MACHINE_ID = wcoss2 || $MACHINE_ID = acorn ]]; then
 
   TPN=128
 
@@ -107,7 +107,7 @@ if [[ $MACHINE_ID = wcoss2.* || $MACHINE_ID = acorn.* ]]; then
   INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
   WAV_tasks_atmw_gdas=248
 
-elif [[ $MACHINE_ID = orion.* ]]; then
+elif [[ $MACHINE_ID = orion ]]; then
 
   TPN=40
 
@@ -120,7 +120,21 @@ elif [[ $MACHINE_ID = orion.* ]]; then
   INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
   WAV_tasks_atmw_gdas=248
 
-elif [[ $MACHINE_ID = hera.* ]]; then
+elif [[ $MACHINE_ID = hercules ]]; then
+
+  TPN=80
+
+  INPES_dflt=3 ; JNPES_dflt=8
+  INPES_thrd=3 ; JNPES_thrd=4
+  INPES_c384=8 ; JNPES_c384=6  ; THRD_c384=2
+  INPES_c768=8 ; JNPES_c768=16 ; THRD_c768=2
+
+  THRD_cpl_atmw_gdas=2
+  INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
+  WAV_tasks_atmw_gdas=248
+
+
+elif [[ $MACHINE_ID = hera ]]; then
 
   TPN=40
 
@@ -133,7 +147,7 @@ elif [[ $MACHINE_ID = hera.* ]]; then
   INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
   WAV_tasks_atmw_gdas=248
 
-elif [[ $MACHINE_ID = linux.* ]]; then
+elif [[ $MACHINE_ID = linux ]]; then
 
   TPN=40
 
@@ -152,7 +166,7 @@ elif [[ $MACHINE_ID = linux.* ]]; then
   ICE_tasks_cpl_thrd=10
   WAV_tasks_cpl_thrd=12
 
-elif [[ $MACHINE_ID = jet.* ]]; then
+elif [[ $MACHINE_ID = jet ]]; then
 
   TPN=24
 
@@ -160,6 +174,8 @@ elif [[ $MACHINE_ID = jet.* ]]; then
   INPES_thrd=3 ; JNPES_thrd=4
   INPES_c384=6 ; JNPES_c384=12 ; THRD_c384=1
   INPES_c768=8 ; JNPES_c768=16 ; THRD_c768=2
+  WRTTASK_PER_GROUP_c384=84
+  WRTTASK_PER_GROUP_c384gdas=88
 
   THRD_cpl_atmw_gdas=2
   INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
@@ -181,7 +197,7 @@ elif [[ $MACHINE_ID = jet.* ]]; then
   WAV_tasks_cpl_c192=80
   WLCLK_cpl_c192=120
 
-elif [[ $MACHINE_ID = s4.* ]]; then
+elif [[ $MACHINE_ID = s4 ]]; then
 
   TPN=32
 
@@ -200,9 +216,9 @@ elif [[ $MACHINE_ID = s4.* ]]; then
   ICE_tasks_cpl_bmrk=48
   WAV_tasks_cpl_bmrk=80
 
-elif [[ $MACHINE_ID = gaea.* ]]; then
+elif [[ $MACHINE_ID = gaea ]]; then
 
-  TPN=36
+  TPN=24
 
   INPES_dflt=3 ; JNPES_dflt=8
   INPES_thrd=3 ; JNPES_thrd=4
@@ -213,7 +229,20 @@ elif [[ $MACHINE_ID = gaea.* ]]; then
   INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
   WAV_tasks_atmw_gdas=264
 
-elif [[ $MACHINE_ID = cheyenne.* ]]; then
+elif [[ $MACHINE_ID = gaea-c5 ]]; then
+
+  TPN=128
+
+  INPES_dflt=3 ; JNPES_dflt=8
+  INPES_thrd=3 ; JNPES_thrd=4
+  INPES_c384=6 ; JNPES_c384=8  ; THRD_c384=1
+  INPES_c768=8 ; JNPES_c768=16 ; THRD_c768=2
+
+  THRD_cpl_atmw_gdas=3
+  INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8; WPG_cpl_atmw_gdas=24
+  WAV_tasks_atmw_gdas=264
+
+elif [[ $MACHINE_ID = cheyenne ]]; then
 
   TPN=36
 
@@ -256,7 +285,7 @@ elif [[ $MACHINE_ID = cheyenne.* ]]; then
   ICE_tasks_cpl_bmrk=48
   WAV_tasks_cpl_bmrk=100
 
-elif [[ $MACHINE_ID = stampede.* ]]; then
+elif [[ $MACHINE_ID = stampede ]]; then
 
   echo "Unknown MACHINE_ID ${MACHINE_ID}. Please update tasks configurations in default_vars.sh"
   exit 1
@@ -270,7 +299,7 @@ elif [[ $MACHINE_ID = stampede.* ]]; then
   TPN_cpl_atmw_gdas=12; INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8
   THRD_cpl_atmw_gdas=4; WPG_cpl_atmw_gdas=24; APB_cpl_atmw_gdas="0 311"; WPB_cpl_atmw_gdas="312 559"
 
-elif [[ ${MACHINE_ID} = noaacloud.* ]] ; then
+elif [[ ${MACHINE_ID} = noaacloud ]] ; then
 
     if [[ $PW_CSP == aws ]]; then
     TPN=36
@@ -282,7 +311,7 @@ elif [[ ${MACHINE_ID} = noaacloud.* ]] ; then
 
     INPES_dflt=3 ; JNPES_dflt=8
     INPES_thrd=3 ; JNPES_thrd=4
-    
+
     INPES_c384=8 ; JNPES_c384=6  ; THRD_c384=2
     INPES_c768=8 ; JNPES_c768=16 ; THRD_c768=2
 
@@ -298,7 +327,7 @@ elif [[ ${MACHINE_ID} = noaacloud.* ]] ; then
     ICE_tasks_cpl_thrd=10
     WAV_tasks_cpl_thrd=12
 
-elif [[ $MACHINE_ID = expanse.* ]]; then
+elif [[ $MACHINE_ID = expanse ]]; then
 
   echo "Unknown MACHINE_ID ${MACHINE_ID}. Please update tasks configurations in default_vars.sh"
   exit 1
@@ -309,8 +338,7 @@ elif [[ $MACHINE_ID = expanse.* ]]; then
 
   TPN_cpl_atmw_gdas=12; INPES_cpl_atmw_gdas=6; JNPES_cpl_atmw_gdas=8
   THRD_cpl_atmw_gdas=2; WPG_cpl_atmw_gdas=24; APB_cpl_atmw_gdas="0 311"; WPB_cpl_atmw_gdas="312 559"
-  
-  
+
 else
 
   echo "Unknown MACHINE_ID ${MACHINE_ID}"
@@ -321,11 +349,13 @@ fi
 WLCLK_dflt=30
 
 export WLCLK=$WLCLK_dflt
+export CMP_DATAONLY=false
 
 export_fv3 ()
 {
-# nems.configure defaults
-export NEMS_CONFIGURE=nems.configure.atm.IN
+# ufs.configure defaults
+export UFS_CONFIGURE=ufs.configure.atm.IN
+export MODEL_CONFIGURE=model_configure.IN
 export atm_model=fv3
 
 export FV3=true
@@ -342,18 +372,20 @@ export INPES=$INPES_dflt
 export JNPES=$JNPES_dflt
 export RESTART_INTERVAL=0
 export QUILTING=.true.
-export QUILTING_RESTART=.false.
+export QUILTING_RESTART=.true.
 export WRITE_GROUP=1
 export WRTTASK_PER_GROUP=6
 export ITASKS=1
 export OUTPUT_HISTORY=.true.
+export HISTORY_FILE_ON_NATIVE_GRID=.false.
 export WRITE_DOPOST=.false.
 export NUM_FILES=2
 export FILENAME_BASE="'atm' 'sfc'"
 export OUTPUT_GRID="'cubed_sphere_grid'"
 export OUTPUT_FILE="'netcdf'"
+export ZSTANDARD_LEVEL=0
 export IDEFLATE=0
-export NBITS=0
+export QUANTIZE_NSD=0
 export ICHUNK2D=0
 export JCHUNK2D=0
 export ICHUNK3D=0
@@ -432,12 +464,18 @@ export DO_UGWP=.false.
 export DO_TOFD=.false.
 export GWD_OPT=1
 export DO_UGWP_V0=.false.
+export DO_UGWP_V1_W_GSLDRAG=.false.
 export DO_UGWP_V0_OROG_ONLY=.false.
 export DO_GSL_DRAG_LS_BL=.false.
 export DO_GSL_DRAG_SS=.false.
 export DO_GSL_DRAG_TOFD=.false.
 export DO_UGWP_V1=.false.
 export DO_UGWP_V1_OROG_ONLY=.false.
+export KNOB_UGWP_DOKDIS=1
+export KNOB_UGWP_NDX4LH=1
+export KNOB_UGWP_VERSION=0
+export KNOB_UGWP_PALAUNCH=500.e2
+export KNOB_UGWP_NSLOPE=1
 
 # resolution dependent settings
 export CDMBWD_c48='0.071,2.1,1.0,1.0'
@@ -479,6 +517,9 @@ export RAS=.false.
 export RANDOM_CLDS=.false.
 export CNVCLD=.true.
 export PROGSIGMA=.false.
+export BETASCU=8.0
+export BETAMCU=1.0
+export BETADCU=2.0
 
 # Aerosol convective scavenging
 export FSCAV_AERO='"*:0.3","so2:0.0","msa:0.0","dms:0.0","nh3:0.4","nh4:0.6","bc1:0.6","bc2:0.6","oc1:0.4","oc2:0.4","dust1:0.6","dust2:0.6","dust3:0.6","dust4:0.6","dust5:0.6","seas1:0.5","seas2:0.5","seas3:0.5","seas4:0.5","seas5:0.5"'
@@ -486,6 +527,7 @@ export FSCAV_AERO='"*:0.3","so2:0.0","msa:0.0","dms:0.0","nh3:0.4","nh4:0.6","bc
 # SFC
 export DO_MYJSFC=.false.
 export DO_MYNNSFCLAY=.false.
+export BL_MYNN_TKEADVECT=.false.
 
 # LSM
 export LSM=1
@@ -505,7 +547,7 @@ export LKM=0 # 0=no lake, 1=run lake model, 2=run both lake and nsst on lake poi
 export IOPT_LAKE=2 # 1=flake, 2=clm lake
 export LAKEFRAC_THRESHOLD=0.0 # lake fraction must be higher for lake model to run it
 export LAKEDEPTH_THRESHOLD=1.0 # lake must be deeper (in meters) for a lake model to run it
-export FRAC_ICE=.false.
+export FRAC_ICE=.true. # should be false for flake, true for clm_lake
 
 export CPL=.false.
 export CPLCHM=.false.
@@ -525,15 +567,20 @@ export OUTPUT_FH="12 -1"
 export NFHOUT=12
 export NFHMAX_HF=12
 export NFHOUT_HF=6
-export IAU_OFFSET=0
 export FHZERO=6
 export FNALBC="'global_snowfree_albedo.bosu.t126.384.190.rg.grb'"
 export FNVETC="'global_vegtype.igbp.t126.384.190.rg.grb'"
 export FNSOTC="'global_soiltype.statsgo.t126.384.190.rg.grb'"
+export FNSOCC="''"
 export FNSMCC="'global_soilmgldas.t126.384.190.grb'"
 export FNSMCC_control="'global_soilmgldas.statsgo.t1534.3072.1536.grb'"
 export FNMSKH_control="'global_slmask.t1534.3072.1536.grb'"
 export FNABSC="'global_mxsnoalb.uariz.t126.384.190.rg.grb'"
+
+# Dynamical core
+export FV_CORE_TAU=0.
+export RF_CUTOFF=30.0
+export FAST_TAU_W_SEC=0.0
 
 # Tiled Fix files
 export ATMRES=C96
@@ -570,6 +617,9 @@ export LNDP_MODEL_TYPE=0
 
 #IAU
 export IAU_INC_FILES="''"
+export IAU_DELTHRS=0
+export IAUFHRS=-1
+export IAU_OFFSET=0
 
 export FH_DFI_RADAR='-2e10'
 
@@ -577,8 +627,6 @@ export FH_DFI_RADAR='-2e10'
 export DO_CA=.false.
 export CA_SGS=.false.
 export CA_GLOBAL=.false.
-
-export IAU_DRYMASSFIXER=.false.
 
 #waves
 export WW3RSTDTHR=12
@@ -677,6 +725,8 @@ export JNPES=$JNPES_cpl_dflt
 export THRD=$THRD_cpl_dflt
 export WRTTASK_PER_GROUP=$WPG_cpl_dflt
 
+export QUILTING_RESTART=.false.
+
 OCN_tasks=$OCN_tasks_cpl_dflt
 ICE_tasks=$ICE_tasks_cpl_dflt
 WAV_tasks=$WAV_tasks_cpl_dflt
@@ -688,20 +738,23 @@ export DT_CICE=${DT_ATMOS}
 export DT_DYNAM_MOM6=1800
 export DT_THERM_MOM6=3600
 
-# nems.configure defaults
-export NEMS_CONFIGURE=nems.configure.cpld.IN
+# ufs.configure defaults
+export UFS_CONFIGURE=ufs.configure.cpld.IN
 export med_model=cmeps
 export atm_model=fv3
 export chm_model=gocart
 export ocn_model=mom6
 export ice_model=cice6
 export wav_model=ww3
+export pio_rearranger=box
+export ocean_albedo_limit=0.06
+export use_mean_albedos=.false.
 
 export coupling_interval_slow_sec=${DT_THERM_MOM6}
 export coupling_interval_fast_sec=${DT_ATMOS}
 
 export RESTART_N=${FHMAX}
-export CPLMODE=nems_frac
+export CPLMODE=ufs.frac
 export cap_dbug_flag=0
 export use_coldstart=false
 export use_mommesh=true
@@ -736,6 +789,7 @@ export IOPT_STC=3
 # P8
 export IOPT_SFC=3
 export IOPT_TRS=2
+export IOPT_DIAG=2
 
 # FV3 P7 settings
 export D2_BG_K1=0.20
@@ -800,6 +854,7 @@ export FNTG3C="'C96.substrate_temperature.tileX.nc'"
 export FNVEGC="'C96.vegetation_greenness.tileX.nc'"
 export FNVETC="'C96.vegetation_type.tileX.nc'"
 export FNSOTC="'C96.soil_type.tileX.nc'"
+export FNSOCC="'C96.soil_color.tileX.nc'"
 export FNSMCC=${FNSMCC_control}
 export FNMSKH=${FNMSKH_control}
 export FNVMNC="'C96.vegetation_greenness.tileX.nc'"
@@ -852,8 +907,14 @@ export MOM6_THERMO_SPAN=False
 export MOM6_USE_WAVES=True
 export MOM6_ALLOW_LANDMASK_CHANGES=False
 # MOM6 IAU
-export MOM_IAU=False
-export MOM_IAU_HRS=6
+export ODA_INCUPD=False
+export ODA_INCUPD_NHOURS=6
+export ODA_TEMPINC_VAR="'pt_inc'"
+export ODA_SALTINC_VAR="'s_inc'"
+export ODA_THK_VAR="'h_fg'"
+export ODA_INCUPD_UV=False
+export ODA_UINC_VAR="'u_inc'"
+export ODA_VINC_VAR="'v_inc'"
 # MOM6 stochastics
 export DO_OCN_SPPT=False
 export PERT_EPBL=False
@@ -875,9 +936,10 @@ export MESH_WAV=mesh.${WAVDOMAIN}.nc
 export CICEGRID=grid_cice_NEMS_mx${OCNRES}.nc
 export CICEMASK=kmtu_cice_NEMS_mx${OCNRES}.nc
 export RUNID=unknown
-# set large; restart frequency now controlled by restart_n in nems.configure
+# set large; restart frequency now controlled by restart_n in ufs.configure
 export DUMPFREQ=d
 export DUMPFREQ_N=1000
+export DIAG_FREQ=`expr $FHMAX \* 3600 / $DT_CICE`
 export USE_RESTART_TIME=.false.
 export RESTART_EXT=.false.
 # setting to true will allow Frazil FW and Salt to be
@@ -941,12 +1003,16 @@ export ICERES=1.00
 export NX_GLB=360
 export NY_GLB=320
 
-# nems.configure
-export NEMS_CONFIGURE=nems.configure.datm_cdeps.IN
+# ufs.configure
+export UFS_CONFIGURE=ufs.configure.datm_cdeps.IN
 export med_model=cmeps
 export atm_model=datm
 export ocn_model=mom6
 export ice_model=cice6
+export pio_rearranger=box
+export ocean_albedo_limit=0.06
+export use_mean_albedos=.false.
+
 export ATM_compute_tasks=$ATM_compute_tasks_cdeps_100
 export OCN_tasks=$OCN_tasks_cdeps_100
 export ICE_tasks=$ICE_tasks_cdeps_100
@@ -974,7 +1040,7 @@ export coupling_interval_slow_sec=${DT_THERM_MOM6}
 export coupling_interval_fast_sec=${DT_ATMOS}
 
 export RESTART_N=${FHMAX}
-export CPLMODE=nems_orig_data
+export CPLMODE=ufs.nfrac.aoflux
 export cap_dbug_flag=0
 export use_coldstart=false
 export use_mommesh=true
@@ -996,6 +1062,7 @@ export mesh_file=cfsr_mesh.nc
 export MESH_ATM=DATM_INPUT/${mesh_file}
 export atm_datamode=${DATM_SRC}
 export stream_files=DATM_INPUT/${FILENAME_BASE}201110.nc
+export STREAM_OFFSET=0
 
 # MOM6 defaults; 1 degree
 export MOM_INPUT=MOM_input_template_100
@@ -1004,8 +1071,14 @@ export MOM6_RIVER_RUNOFF=False
 export FRUNOFF=''
 export CHLCLIM=seawifs_1998-2006_smoothed_2X.nc
 # MOM6 IAU
-export MOM_IAU=False
-export MOM_IAU_HRS=6
+export ODA_INCUPD=False
+export ODA_INCUPD_NHOURS=6
+export ODA_TEMPINC_VAR="'pt_inc'"
+export ODA_SALTINC_VAR="'s_inc'"
+export ODA_THK_VAR="'h_fg'"
+export ODA_INCUPD_UV=False
+export ODA_UINC_VAR="'u_inc'"
+export ODA_VINC_VAR="'v_inc'"
 export MOM6_USE_LI2016=False
 # MOM6 stochastics
 export DO_OCN_SPPT=False
@@ -1022,9 +1095,10 @@ export MESHOCN_ICE=mesh.mx${OCNRES}.nc
 export CICEGRID=grid_cice_NEMS_mx${OCNRES}.nc
 export CICEMASK=kmtu_cice_NEMS_mx${OCNRES}.nc
 export RUNID=unknown
-# set large; restart frequency now controlled by restart_n in nems.configure
+# set large; restart frequency now controlled by restart_n in ufs.configure
 export DUMPFREQ=d
 export DUMPFREQ_N=1000
+export DIAG_FREQ=`expr $FHMAX \* 3600 / $DT_CICE`
 export USE_RESTART_TIME=.false.
 export RESTART_EXT=.false.
 # setting to true will allow Frazil FW and Salt to be
@@ -1071,6 +1145,7 @@ export NTILES=1
 
 export ocn_model=docn
 export ocn_datamode=sstdata
+export pio_rearranger=box
 
 export DOCN_IN_CONFIGURE=docn_in
 export DOCN_STREAM_CONFIGURE=hafs_docn.streams.IN
@@ -1101,7 +1176,6 @@ export RESTART_INTERVAL=0
 export FHROT=0
 export coupling_interval_fast_sec=0
 export QUILTING=.true.
-export QUILTING_RESTART=.false.
 export WRITE_GROUP=1
 export WRTTASK_PER_GROUP=6
 export OUTPUT_HISTORY=.true.
@@ -1111,7 +1185,7 @@ export FILENAME_BASE="'atm' 'sfc'"
 export OUTPUT_GRID="'regional_latlon'"
 export OUTPUT_FILE="'netcdf'"
 export IDEFLATE=0
-export NBITS=0
+export QUANTIZE_NSD=0
 export NFHOUT=3
 export NFHMAX_HF=-1
 export NFHOUT_HF=3
@@ -1138,8 +1212,9 @@ export DTPNT="$(printf "%02d" $(( ${WW3OUTDTHR}*3600 )))"
 export OUTPARS_WAV="WND HS T01 T02 DIR FP DP PHS PTP PDIR UST CHA USP"
 export WAV_CUR='C'
 
-# nems.configure
+# ufs.configure
 export med_model=cmeps
+export pio_rearranger=box
 export CAP_DBUG_FLAG=0
 export RESTART_N=${FHMAX}
 export CPLMODE=hafs
@@ -1161,6 +1236,34 @@ export DOCN_CDEPS=false
 export INPES=$INPES_dflt
 export JNPES=$JNPES_dflt
 export NTILES=1
+export IMFSHALCNV=2
+export IMFDEEPCNV=2
+export HYBEDMF=.false.
+export SATMEDMF=.true.
+export MONINQ_FAC=-1.0
+export HURR_PBL=.true.
+export ISATMEDMF=1
+export IOPT_SFC=1
+export IOPT_DVEG=2
+export IOPT_CRS=1
+export IOPT_RAD=1
+export IOPT_ALB=2
+export IOPT_STC=1
+export LSM=1
+export DO_GSL_DRAG_LS_BL=.true.
+export DO_GSL_DRAG_SS=.true.
+export DO_GSL_DRAG_TOFD=.true.
+export IMP_PHYSICS=11
+export IAER=111
+export CNVGWD=.false.
+export LTAEROSOL=.false.
+export CDMBWD=1.0,1.0,1.0,1.0
+export LHEATSTRG=.false.
+export LRADAR=.true.
+
+export FV_CORE_TAU=5.
+export RF_CUTOFF=30.e2
+export RF_CUTOFF_NEST=50.e2
 
 export IS_MOVING_NEST=".false."
 export VORTEX_TRACKER=0
@@ -1282,4 +1385,228 @@ export NFHMAX_HF=-1
 export NFHOUT_HF=3
 export NSOUT=-1
 export OUTPUT_FH=-1
+}
+export_hrrr() {
+export_fv3
+export NPZ=127
+export NPZP=128
+export DT_ATMOS=300
+export SYEAR=2021
+export SMONTH=03
+export SDAY=22
+export SHOUR=06
+export OUTPUT_GRID='gaussian_grid'
+export NSTF_NAME='2,0,0,0,0'
+export WRITE_DOPOST=.true.
+export IAER=5111
+export FHMAX=12
+
+export FRAC_GRID=.false.
+export FRAC_ICE=.true.
+
+export FV_CORE_TAU=10.
+export RF_CUTOFF=7.5e2
+
+export FV3_RUN=lake_control_run.IN
+export CCPP_SUITE=FV3_HRRR
+export INPUT_NML=rap.nml.IN
+export FIELD_TABLE=field_table_thompson_aero_tke
+export NEW_DIAGTABLE=diag_table_rap
+
+export SFCLAY_COMPUTE_FLUX=.true.
+
+export LKM=1
+export IOPT_LAKE=2
+export IMP_PHYSICS=8
+export DNATS=0
+export DO_SAT_ADJ=.false.
+export LRADAR=.true.
+export LTAEROSOL=.true.
+export IALB=2
+export IEMS=2
+export HYBEDMF=.false.
+export DO_MYNNEDMF=.true.
+export DO_MYNNSFCLAY=.true.
+export DO_DEEP=.false.
+export SHAL_CNV=.false.
+export IMFSHALCNV=-1
+export IMFDEEPCNV=-1
+export LHEATSTRG=.false.
+export LSM=3
+export LSOIL_LSM=9
+export KICE=9
+
+export GWD_OPT=3
+export DO_UGWP_V0=.false.
+export DO_UGWP_V0_OROG_ONLY=.false.
+export DO_GSL_DRAG_LS_BL=.true.
+export DO_GSL_DRAG_SS=.true.
+export DO_GSL_DRAG_TOFD=.true.
+export DO_UGWP_V1=.false.
+export DO_UGWP_V1_OROG_ONLY=.false.
+}
+export_hrrr_conus13km()
+{
+export_fv3
+export SYEAR=2021
+export SMONTH=05
+export SDAY=12
+export SHOUR=16
+export FHMAX=2
+export DT_ATMOS=120
+export RESTART_INTERVAL=1
+export QUILTING=.true.
+export WRITE_GROUP=1
+export WRTTASK_PER_GROUP=6
+export NTILES=1
+export WRITE_DOPOST=.false.
+export OUTPUT_HISTORY=.true.
+export OUTPUT_GRID=lambert_conformal
+export OUTPUT_FILE="'netcdf'"
+
+# Revert these two to GFS_typedefs defaults to avoid a crash:
+export SEDI_SEMI=.false.
+export DECFL=8
+
+export RRFS_SMOKE=.true.
+export SEAS_OPT=0
+
+export LKM=1
+export SFCLAY_COMPUTE_FLUX=.true.
+export IALB=2
+export ICLIQ_SW=2
+export IEMS=2
+export IOVR=3
+export KICE=9
+export LSM=3
+export LSOIL_LSM=9
+export DO_MYNNSFCLAY=.true.
+export DO_MYNNEDMF=.true.
+export DO_MYJPBL=.true
+export HYBEDMF=.false.
+export SHAL_CNV=.false.
+export DO_SAT_ADJ=.false.
+export DO_DEEP=.false.
+export CCPP_SUITE='FV3_HRRR'
+export INPES=12
+export JNPES=12
+export NPX=397
+export NPY=233
+export NPZ=65
+export MAKE_NH=.false.
+export NA_INIT=0
+export DNATS=0
+export EXTERNAL_IC=.false.
+export NGGPS_IC=.false.
+export MOUNTAIN=.true.
+export WARM_START=.true.
+export READ_INCREMENT=.false.
+export RES_LATLON_DYNAMICS="'fv3_increment.nc'"
+export NPZP=66
+export FHZERO=1.0
+export IMP_PHYSICS=8
+export LDIAG3D=.false.
+export QDIAG3D=.false.
+export PRINT_DIFF_PGR=.true.
+export FHCYC=0.0
+export IAER=1011
+export LHEATSTRG=.false.
+export RANDOM_CLDS=.false.
+export CNVCLD=.false.
+export IMFSHALCNV=-1
+export IMFDEEPCNV=-1
+export CDMBWD='3.5,1.0'
+export DO_SPPT=.false.
+export DO_SHUM=.false.
+export DO_SKEB=.false.
+export LNDP_TYPE=0
+export N_VAR_LNDP=0
+
+export GWD_OPT=3
+export DO_UGWP_V0=.false.
+export DO_UGWP_V0_OROG_ONLY=.false.
+export DO_GSL_DRAG_LS_BL=.true.
+export DO_GSL_DRAG_SS=.true.
+export DO_GSL_DRAG_TOFD=.true.
+export DO_UGWP_V1=.false.
+export DO_UGWP_V1_OROG_ONLY=.false.
+
+export FV3_RUN=rrfs_warm_run.IN
+export INPUT_NML=rrfs_conus13km_hrrr.nml.IN
+export FIELD_TABLE=field_table_thompson_aero_tke_smoke
+export DIAG_TABLE=diag_table_hrrr
+export MODEL_CONFIGURE=model_configure_rrfs_conus13km.IN
+export DIAG_TABLE_ADDITIONAL=diag_additional_rrfs_smoke
+export FRAC_ICE=.true.
+}
+export_rap_common()
+{
+export_fv3
+export NPZ=127
+export NPZP=128
+export DT_ATMOS=300
+export SYEAR=2021
+export SMONTH=03
+export SDAY=22
+export SHOUR=06
+export OUTPUT_GRID='gaussian_grid'
+export NSTF_NAME='2,0,0,0,0'
+export WRITE_DOPOST=.true.
+export IAER=5111
+
+export FV_CORE_TAU=10.
+export RF_CUTOFF=7.5e2
+
+export FV3_RUN=control_run.IN
+export INPUT_NML=rap.nml.IN
+export FIELD_TABLE=field_table_thompson_aero_tke
+
+export LHEATSTRG=.false.
+export IMP_PHYSICS=8
+export DNATS=0
+export DO_SAT_ADJ=.false.
+export LRADAR=.true.
+export LTAEROSOL=.true.
+export IALB=2
+export IEMS=2
+export HYBEDMF=.false.
+export DO_MYNNEDMF=.true.
+export DO_MYNNSFCLAY=.true.
+}
+export_rap()
+{
+export_rap_common
+
+export DIAG_TABLE=diag_table_rap
+export CCPP_SUITE=FV3_RAP
+
+export IMFSHALCNV=3
+export IMFDEEPCNV=3
+export LSM=3
+export LSOIL_LSM=9
+export KICE=9
+
+export GWD_OPT=3
+export DO_UGWP_V0=.false.
+export DO_UGWP_V0_OROG_ONLY=.false.
+export DO_GSL_DRAG_LS_BL=.true.
+export DO_GSL_DRAG_SS=.true.
+export DO_GSL_DRAG_TOFD=.true.
+export DO_UGWP_V1=.false.
+export DO_UGWP_V1_OROG_ONLY=.false.
+}
+export_rrfs_v1()
+{
+export_rap_common
+
+export CCPP_SUITE=FV3_RRFS_v1beta
+export DIAG_TABLE=diag_table_rap_noah
+
+export DO_DEEP=.false.
+export SHAL_CNV=.false.
+export IMFSHALCNV=-1
+export IMFDEEPCNV=-1
+export LHEATSTRG=.false.
+export LSM=2
+export LSOIL_LSM=4
 }
