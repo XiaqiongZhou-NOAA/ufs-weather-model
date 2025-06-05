@@ -51,3 +51,7 @@ cpld_control_pdlib_p8 gnu
 cpld_debug_pdlib_p8 gnu
 cpld_control_p8 gnu
 cpld_debug_p8 gnu
+control_iovr4 intel
+control_iovr4_gfdlmpv3 intel
+hafs_regional_atm_gfdlmpv3 intel
+hafs_regional_atm intel
