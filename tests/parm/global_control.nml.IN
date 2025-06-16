@@ -40,7 +40,6 @@
   tau = @[TAU]
   fast_tau_w_sec = @[FAST_TAU_W_SEC]
   rf_cutoff = @[RF_CUTOFF]
-  rf_cutoff_w = @[RF_CUTOFF_W]
   d2_bg_k1 = @[D2_BG_K1]
   d2_bg_k2 = @[D2_BG_K2]
   kord_tm = @[KORD_TM]
